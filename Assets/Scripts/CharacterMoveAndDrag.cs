@@ -31,6 +31,7 @@ public class CharacterMoveAndDrag : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");   // W / S
         _moveInput = new Vector3(h, 0f, v).normalized;
 
+        
         // 空格键检测（输入类逻辑可以留在 Update）
         HandleDragInput();
     }
@@ -51,8 +52,9 @@ public class CharacterMoveAndDrag : MonoBehaviour
     {
         if (_moveInput.magnitude > 0.01f)
         {
-            Vector3 worldDir = transform.TransformDirection(_moveInput);
-            _rb.MovePosition(transform.position + worldDir * moveSpeed * Time.fixedDeltaTime);
+            //Vector3 worldDir = transform.TransformDirection(_moveInput);
+            //Debug.Log(worldDir);
+            _rb.MovePosition(transform.position + _moveInput * moveSpeed * Time.fixedDeltaTime);
         }
     }
 
